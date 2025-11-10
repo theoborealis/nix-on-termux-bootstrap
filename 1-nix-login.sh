@@ -22,6 +22,7 @@ export PROOT_L2S_DIR=$PREFIX/.l2s
 exec $PREFIX/bin/proot \
   --bind=/dev \
   --bind=/dev/urandom:/dev/random \
+  --bind=/proc \
   --bind=/sys \
   -b $PREFIX/nix:/nix \
   -b $PREFIX/var:/var \
@@ -29,7 +30,11 @@ exec $PREFIX/bin/proot \
   -b $PREFIX/etc:/etc! \
   -b $PREFIX/tmp:/tmp \
   -b $PREFIX:/usr \
+  -b $PREFIX/bin:/bin \
+  -b $PREFIX/lib:/lib \
+  -b $PREFIX/bin:/sbin \
   -b $PREFIX/dev/shm:/dev/shm \
+  -b $PREFIX/home:/home \
   --kill-on-exit \
   --link2symlink \
   --sysvipc \
